@@ -433,19 +433,19 @@ export default function Dashboard() {
   const wellnessStats = [
     {
       title: "Mood Score",
-      value: dailyStats.moodScore ? `${dailyStats.moodScore}%` : "No data",
+      value: dailyStats.moodScore ? `${dailyStats.moodScore}%` : "Coming Soon",
       icon: Brain,
       color: "text-purple-500",
       bgColor: "bg-purple-500/10",
-      description: "Today's average mood",
+      description: "",
     },
     {
       title: "Completion Rate",
-      value: "100%",
+      value: "Coming Soon",
       icon: Trophy,
       color: "text-yellow-500",
       bgColor: "bg-yellow-500/10",
-      description: "Perfect completion rate",
+      description: "",
     },
     {
       title: "Therapy Sessions",
@@ -461,7 +461,7 @@ export default function Dashboard() {
       icon: Activity,
       color: "text-blue-500",
       bgColor: "bg-blue-500/10",
-      description: "Planned for today",
+      description: "Performed ",
     },
   ];
 

@@ -20,48 +20,48 @@ const features = [
     description:
       "24/7 access to empathetic AI agents trained in various therapeutic approaches, providing personalized mental health support.",
   },
-  {
-    icon: <Shield className="w-10 h-10 text-primary" />,
-    title: "Blockchain Security",
-    description:
-      "Your therapy sessions are secured by blockchain technology, ensuring complete privacy and transparent record-keeping.",
-  },
-  {
-    icon: <Brain className="w-10 h-10 text-primary" />,
-    title: "Smart Analysis",
-    description:
-      "Advanced NLP and emotion detection helps understand your mental state and provide appropriate interventions.",
-  },
+  // {
+  //   icon: <Shield className="w-10 h-10 text-primary" />,
+  //   title: "Blockchain Security",
+  //   description:
+  //     "Your therapy sessions are secured by blockchain technology, ensuring complete privacy and transparent record-keeping.",
+  // },
+  // {
+  //   icon: <Brain className="w-10 h-10 text-primary" />,
+  //   title: "Smart Analysis",
+  //   description:
+  //     "Advanced NLP and emotion detection helps understand your mental state and provide appropriate interventions.",
+  // },
   {
     icon: <Activity className="w-10 h-10 text-primary" />,
-    title: "Crisis Detection",
+    title: "Mindfulness & Well-Being",
     description:
-      "Real-time monitoring and emergency response protocols to ensure your safety during critical situations.",
+      "Interactive mindfulness activities like breathing exercises, a calming zen garden, and virtual forest walks.",
   },
-  {
-    icon: <Wifi className="w-10 h-10 text-primary" />,
-    title: "IoT Integration",
-    description:
-      "Connect with smart home devices to create an ambient therapeutic environment that adapts to your needs.",
-  },
+  // {
+  //   icon: <Wifi className="w-10 h-10 text-primary" />,
+  //   title: "IoT Integration",
+  //   description:
+  //     "Connect with smart home devices to create an ambient therapeutic environment that adapts to your needs.",
+  // },
   {
     icon: <LineChart className="w-10 h-10 text-primary" />,
     title: "Progress Tracking",
     description:
-      "Detailed analytics and insights about your mental health journey, with blockchain-verified session records.",
+      "Detailed analytics and insights about your mental health journey.",
   },
-  {
-    icon: <Fingerprint className="w-10 h-10 text-primary" />,
-    title: "Privacy First",
-    description:
-      "End-to-end encryption and zero-knowledge proofs ensure your data remains completely confidential.",
-  },
-  {
-    icon: <Heart className="w-10 h-10 text-primary" />,
-    title: "Holistic Care",
-    description:
-      "Integration with wearables and health providers for comprehensive mental wellness monitoring.",
-  },
+  // {
+  //   icon: <Fingerprint className="w-10 h-10 text-primary" />,
+  //   title: "Privacy First",
+  //   description:
+  //     "End-to-end encryption and zero-knowledge proofs ensure your data remains completely confidential.",
+  // },
+  // {
+  //   icon: <Heart className="w-10 h-10 text-primary" />,
+  //   title: "Holistic Care",
+  //   description:
+  //     "Integration with wearables and health providers for comprehensive mental wellness monitoring.",
+  // },
 ];
 
 export default function FeaturesPage() {
