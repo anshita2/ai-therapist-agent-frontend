@@ -256,6 +256,7 @@ export default function TherapyPage() {
       if (stressCheck) {
         setStressPrompt(stressCheck);
         setIsTyping(false);
+        setIsChatPaused(true);
         return;
       }
 
@@ -531,7 +532,46 @@ export default function TherapyPage() {
             </div>
           </div>
 
-          {messages.length === 0 ? (
+          {stressPrompt && isChatPaused ? (
+  // ==== ADD THIS BLOCK TO SHOW THE ACTIVITY ====
+  <div className="flex-1 p-6 bg-muted/20 rounded-lg flex flex-col items-center justify-center space-y-4">
+    <div className="w-full flex items-center justify-between">
+      <h3 className="text-lg font-semibold">
+        {stressPrompt.activity.title}
+      </h3>
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => {
+          setIsChatPaused(false);
+          setStressPrompt(null);
+        }}
+      >
+        <X className="w-5 h-5" />
+      </Button>
+    </div>
+
+    <p className="text-sm text-muted-foreground text-center">
+      {stressPrompt.activity.description}
+    </p>
+
+    {/* Render the correct activity component based on type */}
+    {stressPrompt.activity.type === "breathing" && <BreathingGame />}
+    {stressPrompt.activity.type === "garden" && <ZenGarden />}
+    {stressPrompt.activity.type === "forest" && <ForestGame />}
+    {stressPrompt.activity.type === "waves" && <OceanWaves />}
+
+    {/* Button to complete activity */}
+    <Button
+      onClick={() => {
+        setIsChatPaused(false); // resume chat after activity
+        setStressPrompt(null); // clear activity prompt
+      }}
+    >
+      Complete Activity
+    </Button>
+  </div>
+) :messages.length === 0 ? (
             // Welcome screen with suggested questions
             <div className="flex-1 flex items-center justify-center p-4">
               <div className="max-w-2xl w-full space-y-8">

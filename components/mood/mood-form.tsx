@@ -9,8 +9,9 @@ import { useSession } from "@/lib/contexts/session-context";
 import { useRouter } from "next/navigation";
 
 interface MoodFormProps {
-  onSuccess?: () => void;
+  onSuccess?: (avgMoodScore?: number) => void; // optional argument
 }
+
 
 export function MoodForm({ onSuccess }: MoodFormProps) {
   const [moodScore, setMoodScore] = useState(50);
@@ -72,14 +73,14 @@ export function MoodForm({ onSuccess }: MoodFormProps) {
 
       const data = await response.json();
       console.log("MoodForm: Success response:", data);
-
+      
       toast({
         title: "Mood tracked successfully!",
         description: "Your mood has been recorded.",
       });
 
       // Call onSuccess to close the modal
-      onSuccess?.();
+      onSuccess?.(data.avgMoodScore);
     } catch (error) {
       console.error("MoodForm: Error:", error);
       toast({

@@ -135,6 +135,7 @@ const calculateDailyStats = (activities: Activity[]): DailyStats => {
 };
 
 // Rename the function
+
 const generateInsights = (activities: Activity[]) => {
   const insights: {
     title: string;
@@ -429,11 +430,16 @@ export default function Dashboard() {
     }
   }, [activitiesLoaded, fetchDailyStats]);
 
+  const [todayMoodScore, setTodayMoodScore] = useState<number | null>(null);
+  
+
   // Update wellness stats to reflect the changes
   const wellnessStats = [
     {
       title: "Mood Score",
-      value: dailyStats.moodScore ? `${dailyStats.moodScore}%` : "Coming Soon",
+      value: todayMoodScore !== null
+    ? `${todayMoodScore.toFixed(2)}%`
+    : "Track your Mood",
       icon: Brain,
       color: "text-purple-500",
       bgColor: "bg-purple-500/10",
@@ -464,9 +470,21 @@ export default function Dashboard() {
       description: "Performed ",
     },
   ];
+//   const fetchTodayMoodScore = async () => {
+//   try {
+//     const response = await fetch("/api/mood/today"); // your backend endpoint
+//     if (!response.ok) throw new Error("Failed to fetch today's mood");
+//     const data = await response.json();
+//     setTodayMoodScore(data.averageMood); // null if no mood tracked yet
+//   } catch (error) {
+//     console.error("Failed to fetch today's mood:", error);
+//   }
+// };
+
 
   // Load activities on mount
   useEffect(() => {
+    //fetchTodayMoodScore();
     loadActivities();
   }, [loadActivities]);
 
@@ -475,22 +493,22 @@ export default function Dashboard() {
     router.push("/therapy/new");
   };
 
-  const handleMoodSubmit = async (data: { moodScore: number }) => {
-    setIsSavingMood(true);
-    try {
-      await saveMoodData({
-        userId: "default-user",
-        mood: data.moodScore,
-        note: "",
-      });
-      setShowMoodModal(false);
-      await loadActivities();
-    } catch (error) {
-      console.error("Error saving mood:", error);
-    } finally {
-      setIsSavingMood(false);
-    }
-  };
+  // const handleMoodSubmit = async (data: { moodScore: number }) => {
+  //   setIsSavingMood(true);
+  //   try {
+  //     await saveMoodData({
+  //       userId: "default-user",
+  //       mood: data.moodScore,
+  //       note: "",
+  //     });
+  //     setShowMoodModal(false);
+  //     await loadActivities();
+  //   } catch (error) {
+  //     console.error("Error saving mood:", error);
+  //   } finally {
+  //     setIsSavingMood(false);
+  //   }
+  // };
 
   const handleAICheckIn = () => {
     setShowActivityLogger(true);
@@ -769,7 +787,17 @@ export default function Dashboard() {
               Move the slider to track your current mood
             </DialogDescription>
           </DialogHeader>
-          <MoodForm onSuccess={() => setShowMoodModal(false)} />
+          <MoodForm
+  onSuccess={(avgMoodScore?: number) => {
+    if (avgMoodScore !== undefined) {
+      setTodayMoodScore(avgMoodScore); // only update if a number is passed
+    }
+    setShowMoodModal(false);
+    loadActivities();
+  }}
+/>
+
+
         </DialogContent>
       </Dialog>
 
